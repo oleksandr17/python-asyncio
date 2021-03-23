@@ -9,7 +9,7 @@ async def cancel_me():
         await asyncio.sleep(3600)
     except asyncio.CancelledError:
         print('cancel_me(): cancel sleep')
-        raise
+        raise  # TODO: comment and try
     finally:
         print('cancel_me(): after sleep')
 
@@ -18,11 +18,13 @@ async def main():
     task = asyncio.create_task(cancel_me())
 
     # Wait for 1 second
-    await asyncio.sleep(1)
+    await asyncio.sleep(1)  # TODO: comment and try
 
     task.cancel()
     try:
-        await task
+        print("main(): before await task")
+        await task  # TODO: comment and try
+        print("main(): after await task")
     except asyncio.CancelledError:
         print("main(): cancel_me is cancelled now")
 
